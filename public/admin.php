@@ -1,14 +1,15 @@
 <?php include 'header.php'?>
-
-<div class="panel panel-primary col-sx-12">
+<div class="row">
+    <div class="">
+        <div class="panel panel-primary">
     <div class="panel-heading">
-        <h3>Listes des tâches <a href="#" class="btn btn-success pull-right">Créez une nouvelle tâche</a></h3>
+        <h3>Listes des tâches <a href="#" class="btn btn-warning pull-right">Créez une nouvelle tâche</a></h3>
 
     </div>
     <div class="panel-body tableau">
 
 
-    <div class="table-responsive">
+    <div class="table table-responsive">
         <table class="table table-bordered">
             <thead>
             <tr>
@@ -60,5 +61,6 @@
     </div>
     </div>
 </div>
-
+    </div>
+</div>
 <?php include 'footer.php'?>

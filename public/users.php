@@ -27,7 +27,7 @@
                         <td>Inisialisation du projet</td>
                         <td>2015-01-31</td>
                         <td>02:00:00</td>
-                        <td><a href="#" class="btn btn-primary">Démmarez la tâche</a></td>
+                        <td><a href="#" class="btn btn-primary btn-sm">Démmarez la tâche</a></td>
                     </tr>
                     </tbody>
                 </table>

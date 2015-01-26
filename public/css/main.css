@@ -7,7 +7,7 @@ main.container{
    margin-top: 100px;
 }
 .login, .formulaire{
-   width:50%;
+   width:35%;
    margin: 0 auto;
 }
 
@@ -23,6 +23,86 @@ main.container{
 .modif{
    display: none;
 }
+
+.panel{
+   box-shadow: 0 3px 10px rgba(0,0,0,.23),0 3px 10px rgba(0,0,0,.16);
+   border-radius: 0;
+   border: none;
+}
+
+.btn.btn-primary {
+   background-color: #009587;
+   color: rgba(255,255,255,.84);
+   background-image: none;
+   border-color: transparent;
+}
+
+.btn-success {
+   color: #fff;
+   background-color: #449d44;
+   border-color: #398439;
+}
+
+.btn-danger {
+   background-color: #f44336;
+   color: rgba(255,255,255,.84);
+   background-image: none;
+   border-color: transparent;
+}
+
+.btn-danger:hover, .open>.dropdown-toggle.btn-danger {
+   color: #fff;
+   background-color: #f44336;;
+   border-color: transparent;
+
+}
+
+
+.btn-info{
+   background-color: #03a9f4;
+   color: rgba(255,255,255,.84);
+   background-image: none;
+   border-color: transparent;
+}
+
+.btn-warning {
+   background-color: #ec971f;
+   color: rgba(255,255,255,.84);
+   background-image: none;
+   border-color: transparent;
+}
+
+.btn:hover {
+   box-shadow: 0 6px 10px rgba(0,0,0,.23),0 10px 30px rgba(0,0,0,.19);
+}
+
+
+.btn {
+   position: relative;
+   padding: 8px 25px;
+   margin-bottom: 6px;
+   border: 0;
+   cursor: pointer;
+   border-radius: 0;
+   text-transform: uppercase;
+   text-decoration: none;
+   color: rgba(255,255,255,.84);
+   transition: box-shadow .28s cubic-bezier(.4,0,.2,1);
+   outline: none!important;
+}
+
+.btn-sm {
+   padding: 5px 10px;
+   font-size: 12px;
+   line-height: 1.5;
+   border-radius: 3px;
+}
+
+.panel-primary>.panel-heading {
+   background-color: #009587;
+}
+
+
 
 
 
