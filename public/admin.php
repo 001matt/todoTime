@@ -15,7 +15,7 @@ include 'header.php'
 
 <div class="panel panel-primary col-sx-12">
     <div class="panel-heading">
-        <h3>Listes des tâches <a href="form.php" class="btn btn-success pull-right">Créez une nouvelle tâche</a></h3>
+        <h3>Listes des tâches <a href="form.php" class="btn btn-primary pull-right">Créez une nouvelle tâche</a></h3>
     </div>
     <div class="panel-body tableau">
         <div class="table-responsive">
@@ -42,8 +42,8 @@ include 'header.php'
         <td><?php foreach ($tache->getUsers() as $value) {
                 echo $value->getName() . ' ' . $value->getFirstname() . '<br>';
             }; ?></td>
-        <td><a href="form.php?id=<?= $tache->getId(); ?>" class="btn btn-primary">Modifier</a>
-            <a href="admin.php?id=<?= $tache->getId(); ?>" class="btn btn-danger">Supprimer</a>
+        <td><a href="form.php?id=<?= $tache->getId(); ?>" class="btn btn-primary"><i class="fa fa-pencil fa-2x"></i></a>
+            <a href="admin.php?id=<?= $tache->getId(); ?>" class="btn btn-danger"><i class="fa fa-trash-o fa-2x"></i></a>
         </td>
     </tr>
 <?php endforeach; ?>

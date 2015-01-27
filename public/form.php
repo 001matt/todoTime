@@ -18,47 +18,47 @@ include 'header.php' ?>
             <h3>Formulaire de création et de modification de tâches</h3>
         </div>
         <div class="panel-body">
-            <form class="form-horizontal" action="" methode="post">
+            <form class="" action="" methode="post">
                 <div class="form-group">
-                    <label for="title" class="col-sm-2 control-label">Titre de la tâche</label>
+                    <label for="title" class=" control-label">Titre de la tâche</label>
 
-                    <div class="col-sm-10">
+                    <div class="">
                         <input type="text" class="form-control" name="title"
                                value="<?= empty($id) ? '' : $taches->getTitre(); ?>" placeholder="Titre de la tâche">
                     </div>
                 </div>
 
                 <div class="form-group">
-                    <label for="description" class="col-sm-2 control-label">Description de la tâche</label>
+                    <label for="description" class=" control-label">Description de la tâche</label>
 
-                    <div class="col-sm-10">
+                    <div class="">
                         <textarea type="textarea" rows="3" class="form-control" name="description"
                                   placeholder="Description de la tâche"><?= empty($id) ? '' : $taches->getDescription(); ?></textarea>
                     </div>
                 </div>
 
                 <div class="form-group">
-                    <label for="echeance" class="col-sm-2 control-label">Echéance</label>
+                    <label for="echeance" class=" control-label">Echéance</label>
 
-                    <div class="col-sm-10">
+                    <div class="">
                         <input type="date" class="form-control" value="<?= empty($id) ? '' : $taches->getEcheance(); ?>"
                                name="echeance">
                     </div>
                 </div>
 
                 <div class="form-group">
-                    <label for="echeance" class="col-sm-2 control-label">Temps prévisionel</label>
+                    <label for="echeance" class=" control-label">Temps prévisionel</label>
 
-                    <div class="col-sm-10">
+                    <div class="">
                         <input type="time" class="form-control"
                                value="<?= empty($id) ? '' : $taches->getTimeRealisation(); ?>" name="echeance">
                     </div>
                 </div>
 
                 <div class="form-group">
-                    <label for="echeance" class="col-sm-2 control-label">Utilisateur</label>
+                    <label for="echeance" class=" control-label">Utilisateur</label>
 
-                    <div class="col-sm-10">
+                    <div class="">
                         <select name="user" id="" class="form-control" multiple>
                             <?php foreach ($taches->getUsers() as $user) : ?>
                                 <option value="user1"><?= $user->getName() . ' ' . $user->getFirstname(); ?></option>

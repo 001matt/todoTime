@@ -8,7 +8,7 @@ $taches = $crudTache->findAll(2);
 include 'header.php'
 ?>
 
-    <div class="panel panel-primary col-sx-12">
+    <div class="panel panel-primary col-sx-12" xmlns="http://www.w3.org/1999/html">
         <div class="panel-heading">
             <h3>Listes des tâches de : Matthieu Pringuez</h3>
 
@@ -35,7 +35,7 @@ include 'header.php'
                             <td><?= $tache->getDescription(); ?></td>
                             <td><?= $tache->getEcheance(); ?></td>
                             <td><?= $tache->getTimerealisation(); ?></td>
-                            <td><a href="#" class="btn btn-primary btn-sm">Démmarez la tâche</a></td>
+                            <td><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">Démmarez</button></td>
                         </tr>
                     <?php endforeach; ?>
                     </tbody>
@@ -43,5 +43,27 @@ include 'header.php'
             </div>
         </div>
     </div>
+
+    <!-- Modal -->
+    <div class="">
+    <div class="modal fade opac" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="myModalLabel">Chronomètre</h4>
+                </div>
+                <div class="modal-body">
+                    <h2 id="chronotime">0:00:00:00</h2>
+                    <form name="chronoForm">
+                        <button class="btn" type="button" name="startstop" value="start!" onClick="chronoStart()" ><i class="fa fa-play"></i></button>
+                        <input type="button" name="reset" value="reset!" onClick="chronoReset()" />
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
 
 <?php include 'footer.php' ?>
