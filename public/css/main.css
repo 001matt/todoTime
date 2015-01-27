@@ -9,11 +9,23 @@ main.container{
 .login, .formulaire{
    width:35%;
    margin: 0 auto;
+
 }
 
+/*-----------------Panel--------------------------*/
 .panel-body.tableau{
    padding: 0;
 }
+.panel{
+   box-shadow: 0 3px 10px rgba(0,0,0,.23),0 3px 10px rgba(0,0,0,.16);
+   border-radius: 0;
+   border: none;
+}
+
+.panel-primary>.panel-heading {
+   background-color: #009587;
+}
+
 
 .formulaire{
    width:70%;
@@ -24,12 +36,8 @@ main.container{
    display: none;
 }
 
-.panel{
-   box-shadow: 0 3px 10px rgba(0,0,0,.23),0 3px 10px rgba(0,0,0,.16);
-   border-radius: 0;
-   border: none;
-}
 
+/*--------------------------Button------------------------*/
 .btn.btn-primary {
    background-color: #009587;
    color: rgba(255,255,255,.84);
@@ -98,9 +106,7 @@ main.container{
    border-radius: 3px;
 }
 
-.panel-primary>.panel-heading {
-   background-color: #009587;
-}
+
 
 
 
