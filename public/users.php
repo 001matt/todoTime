@@ -1,4 +1,12 @@
-<?php include 'header.php'?>
+<?php
+require_once '../application/init.php';
+
+use todo\DbTable\Tache;
+
+$crudTache = new Tache($connection);
+$taches = $crudTache->findAll(2);
+include 'header.php'
+?>
 
     <div class="panel panel-primary col-sx-12">
         <div class="panel-heading">
@@ -12,7 +20,6 @@
                 <table class="table table-bordered">
                     <thead>
                     <tr>
-                        <td>N°</td>
                         <td>Titre</td>
                         <td>Description</td>
                         <td>Echéance</td>
@@ -21,18 +28,20 @@
                     </tr>
                     </thead>
                     <tbody>
-                    <tr>
-                        <td>1</td>
-                        <td>Réalisation du projet</td>
-                        <td>Inisialisation du projet</td>
-                        <td>2015-01-31</td>
-                        <td>02:00:00</td>
-                        <td><a href="#" class="btn btn-primary btn-sm">Démmarez la tâche</a></td>
-                    </tr>
+                    <?php foreach ($taches as $tache): ?>
+
+                        <tr>
+                            <td><?= $tache->getTitre(); ?></td>
+                            <td><?= $tache->getDescription(); ?></td>
+                            <td><?= $tache->getEcheance(); ?></td>
+                            <td><?= $tache->getTimerealisation(); ?></td>
+                            <td><a href="#" class="btn btn-primary btn-sm">Démmarez la tâche</a></td>
+                        </tr>
+                    <?php endforeach; ?>
                     </tbody>
                 </table>
             </div>
         </div>
     </div>
 
-<?php include 'footer.php'?>
+<?php include 'footer.php' ?>
