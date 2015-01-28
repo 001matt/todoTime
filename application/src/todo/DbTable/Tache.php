@@ -2,9 +2,10 @@
 
 namespace todo\DbTable;
 
-use todo\Tache as todoTache;
-use todo\User;
+use DateTime;
 use Ipf\Db\Connection\Pdo;
+use todo\Tache as todoTache;
+use todo\User as todoUser;
 
 class Tache {
     
@@ -25,13 +26,28 @@ class Tache {
         $sql = "INSERT INTO tache
                 VALUES(
                     NULL,
-                     ". $this->getDb()->quote($tache->getTitre()) .",
-                     ". $this->getDb()->quote($tache->getDescription()) . ",
-                     ". $tache->getEcheance() .",
+                    '". $tache->getTitre() ."',
+                    '". $tache->getDescription() . "',
+                    '". $tache->getEcheance() ."',
                     '". $tache->getTimeRealisation() ."',
-                    '". $tache->getStatut() .")";
-
-        return $this->getDb()->exec($sql);
+                    ". $tache->getStatut() .")";
+        
+        $this->getDb()->exec($sql);
+        
+        foreach ($tache->getUsers() as $user) {
+            
+            $sqlInsertAssign = "INSERT INTO assignation
+                    VALUES(
+                            NULL,
+                            ". $this->getDb()->lastInsertId() .",
+                            ". $user[0] . ",
+                            '". $tache->getTimeRealisation() ."',
+                           '". date_format(new DateTime, 'Y-m-d H:i:s') ."',
+                           '". date_format(new DateTime, 'Y-m-d H:i:s') ."')";
+            
+            $this->getDb()->exec($sqlInsertAssign);
+        }
+        return true;
     }
 
     public function update(todoTache $tache)
@@ -46,11 +62,14 @@ class Tache {
         return $this->getDb()->exec($sql);
     }
 
-    public function findAll()
+    public function findAll($id = null)
     {
         $sql = $this->getSqlTache();
+        if (!empty($id)) {
+            $sql .= " WHERE idUser=" . (int) $id;
+        }
         $sql .= " GROUP BY idTache";
-        
+
         $query    = $this->getDb()->query($sql);
         $result   = $query->fetchAll(\PDO::FETCH_ASSOC);
         $taches = array();
@@ -77,9 +96,17 @@ class Tache {
         return null;
     }
 
-    public function delete(Tache $tache)
+    public function delete($id)
     {
-        $sql = "DELETE FROM tache WHERE idTache = ".$tache->getIdUser()."";
+        $sql = "DELETE FROM tache WHERE id = " . $id . "";
+        $sqlAssignation = "DELETE FROM assignation WHERE idTache = " . $id . "";
+        $this->getDb()->exec($sql);
+        return $this->getDb()->exec($sqlAssignation);
+
+    }
+    
+    public function removeAssign($idUser, $idTache) {
+        $sql = "DELETE FROM assignation WHERE idUser = ".$idUser." AND idTache= ".$idTache."";
             
         return $this->getDb()->exec($sql);
     }
@@ -106,7 +133,7 @@ class Tache {
             $queryUser = $this->getDb()->query($sqlUser);
             
             foreach ($queryUser->fetchAll(\PDO::FETCH_ASSOC) as $row) {
-                $user = new User();
+                $user = new todoUser();
                 $user->setId($row['idUser'])
                         ->setName($row['name'])
                         ->setFirstname($row['firstname'])
@@ -118,6 +145,7 @@ class Tache {
                 $tache->setUsers($user);
             }
         }
+       
         return $tache; 
     }
 
