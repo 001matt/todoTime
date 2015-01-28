@@ -1,4 +1,6 @@
-<?php include 'header.php'?>
+<?php include 'header.php';
+ session_start();
+?>
 
     <div class="panel panel-primary col-sx-12">
         <div class="panel-heading">

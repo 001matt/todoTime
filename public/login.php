@@ -1,4 +1,7 @@
-<?php include 'header.php' ?>
+<?php include 'header.php';
+session_start();
+var_dump($_SESSION);
+?>
 
 
             <div class="login">
@@ -7,7 +10,7 @@
                         <h3>Formulaire de connexion</h3>
                     </div>
                     <div class="panel-body">
-                        <form class="form-horizontal">
+                        <form class="form-horizontal" action="../application/controller/ctrlConnexion.php?action=login" method="POST">
                             <div class="form-group">
                                 <label for="email" class="col-sm-2 control-label">Login</label>
                                 <div class="col-sm-10">

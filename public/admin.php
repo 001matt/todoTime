@@ -2,10 +2,11 @@
 require_once '../application/init.php';
 
 use todo\DbTable\Tache;
-
+ session_start();
 $crudTache = new Tache($connection);
 $taches = $crudTache->findAll();
-include 'header.php'
+include 'header.php';
+var_dump($_SESSION);
 ?>
 
 <div class="panel panel-primary col-sx-12">

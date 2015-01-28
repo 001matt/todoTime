@@ -42,7 +42,7 @@
             <a class="navbar-brand" href="#">Gestion de tâches</a>
         </div>
         <div id="navbar" class="navbar-collapse collapse">
-            <form class="navbar-form navbar-right">
+            <form class="navbar-form navbar-right" action="../application/controller/ctrlConnexion.php?action=logout" method="POST">
                 <button type="submit" class="btn btn-success">Déconnexion</button>
             </form>
         </div><!--/.navbar-collapse -->

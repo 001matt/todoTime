@@ -83,7 +83,14 @@ class Tache {
             
         return $this->getDb()->exec($sql);
     }
-
+    
+    public function addTimeExecution(Tache $tache) {
+        
+        $sql = "UPDATE assignation SET timeExecution=".$tache->getTimeExecution()." WHERE idTache = ".$tache->getIdTache()." and id_user=".$tache->getIdUser();
+         
+        return $this->getDb()->exec($sql);
+    }
+    
     public function rowToObject(array $row)
     {
         $tache = new todoTache();
