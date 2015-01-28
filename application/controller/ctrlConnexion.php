@@ -3,7 +3,6 @@ require_once '../init.php';
 use todo\DbTable\Connexion;
 
 $action = $_REQUEST['action'];
-var_dump($action);
 switch($action){
     case 'login': 
     {
@@ -15,16 +14,15 @@ switch($action){
                 //on créer un objet connexion et execute la requete
                 $connexion = new connexion($connection);
                 $user = $connexion->connectUser($email, $mdp);
-                var_dump($user);
                 //Si la requête retourne un tableau tableau
                 if(is_array($user)) {
                     session_start();
                     $_SESSION['idUser'] = $user['id'] ;
-                    $_SESSION['name']   = $user['name'];
-                    $_SESSION['firstname']   = $user['firstname'];
-                    $_SESSION['statut']   = $user['statut'];
+                    $_SESSION['nom']   = $user['name'];
+                    $_SESSION['prenom']   = $user['firstname'];
+                    $_SESSION['state']   = $user['state'];
 
-                    if($user['statut'] === 'admin'){
+                    if($user['state'] === '1'){
                         //include('../../public/admin.php');
                         header('Location: ../../public/admin.php');
                     }

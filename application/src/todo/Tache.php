@@ -3,9 +3,9 @@ namespace todo;
 
 class Tache {
     
-    const STATUS_ASSIGNEE = 0;
-    const STATUS_ENCOURS = 1;
-    const STATUS_TERMINEE = 2;
+    const STATUS_ASSIGNEE = 1;
+    const STATUS_ENCOURS = 2;
+    const STATUS_TERMINEE = 3;
     private $id;
     private $titre;
     private $description;
@@ -54,10 +54,11 @@ class Tache {
 
     function getStatut() {
         return $this->statut;
+        
     }
     
     public function getStatutToString($statut = null) {
-        $tab = array(0 => 'Assignée', 1 => 'En cours', 2 => 'Terminée');
+        $tab = array(1 => 'Assignée', 2 => 'En cours', 3 => 'Terminée');
         if(!empty($statut)){
             return $tab[$statut];
         }else{

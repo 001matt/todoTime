@@ -10,13 +10,13 @@ use todo\DbTable\Tache;
 use todo\DbTable\User;
 
 $crudTache = new Tache($connection);
-$taches = $crudTache->findAll('2');
+$taches = $crudTache->findAll($_SESSION['idUser']);
     
 include 'header.php'?>
 
     <div class="panel panel-primary col-sx-12" xmlns="http://www.w3.org/1999/html">
         <div class="panel-heading">
-            <h3>Listes des tâches de : Matthieu Pringuez</h3>
+            <h3>Listes des tâches de : <?php echo $_SESSION['nom'].' '.$_SESSION['prenom'] ?></h3>
 
         </div>
         <div class="panel-body tableau">

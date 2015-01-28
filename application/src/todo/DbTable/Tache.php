@@ -129,7 +129,7 @@ class Tache {
                 ->setStatut($row['statut']);
         if (isset($row['idUser'])) {
             
-            $sqlUser = "SELECT idUser, name, firstname, email, login, password, statut FROM user AS u JOIN assignation AS a ON a.idUser = u.id WHERE idTache = ".$row['idTache']."";
+            $sqlUser = "SELECT idUser, name, firstname, email, login, password, state FROM user AS u JOIN assignation AS a ON a.idUser = u.id WHERE idTache = ".$row['idTache']."";
             $queryUser = $this->getDb()->query($sqlUser);
             
             foreach ($queryUser->fetchAll(\PDO::FETCH_ASSOC) as $row) {
@@ -140,12 +140,11 @@ class Tache {
                         ->setEmail($row['email'])
                         ->setLogin($row['login'])
                         ->setPassword($row['password'])
-                        ->setStatut($row['statut']);
+                        ->setStatut($row['state']);
                 
                 $tache->setUsers($user);
             }
         }
-       
         return $tache; 
     }
 
