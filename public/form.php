@@ -36,14 +36,13 @@ include 'header.php'?>
 
                 <div class="form-group">
                     <label for="echeance">Echéance</label>
-                    <input type="date" id="echeance" name="echeance" class="form-control"
-                           value="<?= empty($id) ? '' : $taches->getEcheance(); ?>" name="echeance">
+                    <input type="datetime" id="echeance" name="echeance" class="datepicker form-control" value="<?= empty($id) ? '' : $taches->getEcheance(); ?>">
                 </div>
 
-                <div class="form-group">
+                <div class="form-group input-append bootstrap-timepicker">
                     <label for="echeance">Temps prévisionel</label>
-                    <input type="time" class="form-control" id="timeRealisation" name="timeRealisation"
-                           value="<?= empty($id) ? '' : $taches->getTimeRealisation(); ?>" name="echeance">
+                    <input type="text" class="timepicker2 input-small form-control" id="timeRealisation" name="timeRealisation"
+                           value="<?= empty($id) ? '' : $taches->getTimeRealisation(); ?>" >
                 </div>
 
                  <?php if (!empty($id)): ?>

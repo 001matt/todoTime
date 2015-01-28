@@ -8,12 +8,14 @@
     <title>projet</title>
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <link rel="stylesheet" href="css/font-awesome.min.css">
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.11.2/themes/smoothness/jquery-ui.css">
     <style>
         body {
             padding-top: 60px;
             padding-bottom: 40px;
         }
     </style>
+
 
     <link rel="stylesheet" href="css/main.css">
 

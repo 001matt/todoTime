@@ -33,21 +33,21 @@ include 'header.php';
                 </thead>
                 <tbody>
                 <?php foreach ($taches as $tache) : ?>
-    <tr>
-        <td><?= $tache->getTitre(); ?></td>
-        <td><?= $tache->getDescription(); ?></td>
-        <td><?= $tache->getEcheance(); ?></td>
-        <td><?= $tache->getTimerealisation(); ?></td>
-        <td><?= $tache->getStatutToString($tache->getStatut()); ?></td>
-        <td><?php foreach ($tache->getUsers() as $value) {
-                echo $value->getName() . ' ' . $value->getFirstname() . '<br>';
-            }; ?></td>
-        <td><a href="form.php?id=<?= $tache->getId(); ?>" class="btn btn-primary"><i class="fa fa-pencil fa-2x"></i></a>
-            <a href="admin.php?id=<?= $tache->getId(); ?>" class="btn btn-danger"><i
-                    class="fa fa-trash-o fa-2x"></i></a>
-        </td>
-    </tr>
-<?php endforeach; ?>
+                    <tr>
+                        <td><?= $tache->getTitre(); ?></td>
+                        <td><?= $tache->getDescription(); ?></td>
+                        <td><?= $tache->getEcheance(); ?></td>
+                        <td><?= $tache->getTimerealisation(); ?></td>
+                        <td><?= $tache->getStatutToString($tache->getStatut()); ?></td>
+                        <td><?php foreach ($tache->getUsers() as $value) {
+                                echo $value->getName() . ' ' . $value->getFirstname() . '<br>';
+                            }; ?></td>
+                        <td>
+                            <a href="form.php?id=<?= $tache->getId(); ?>" class="btn btn-primary"><i class="fa fa-pencil fa-2x"></i></a>
+                            <a href="admin.php?id=<?= $tache->getId(); ?>" class="btn btn-danger"><i class="fa fa-trash-o fa-2x"></i></a>
+                        </td>
+                    </tr>
+                <?php endforeach; ?>
                 </tbody>
             </table>
         </div>
