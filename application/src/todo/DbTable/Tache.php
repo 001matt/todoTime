@@ -2,13 +2,13 @@
 
 namespace todo\DbTable;
 
-use todo\Tache as todoTache;
-use todo\User;
+use DateTime;
 use Ipf\Db\Connection\Pdo;
+use todo\Tache as todoTache;
+use todo\User as todoUser;
 
-class Tache
-{
-
+class Tache {
+    
     private $db;
 
     public function __construct(Pdo $db)
@@ -23,41 +23,42 @@ class Tache
 
     public function add(todoTache $tache)
     {
-        //foreach utilisateur
+        $sql = "INSERT INTO tache
+                VALUES(
+                    NULL,
+                    '". $tache->getTitre() ."',
+                    '". $tache->getDescription() . "',
+                    '". $tache->getEcheance() ."',
+                    '". $tache->getTimeRealisation() ."',
+                    ". $tache->getStatut() .")";
+        
+        $this->getDb()->exec($sql);
+        
         foreach ($tache->getUsers() as $user) {
             
             $sqlInsertAssign = "INSERT INTO assignation
                     VALUES(
                             NULL,
-                            ". $tache->getId() .",
-                            ". $user->getId() . ",
-                            ". $tache->getTimeRealisation() .",
-                           '". date('Y-m-d', new \DateTime()) ."',
-                           '". date('Y-m-d', new \DateTime()) .")";
+                            ". $this->getDb()->lastInsertId() .",
+                            ". $user[0] . ",
+                            '". $tache->getTimeRealisation() ."',
+                           '". date_format(new DateTime, 'Y-m-d H:i:s') ."',
+                           '". date_format(new DateTime, 'Y-m-d H:i:s') ."')";
+            
+            $this->getDb()->exec($sqlInsertAssign);
         }
-        
-        $this->getDb()->exec($sqlInsertAssign);
-        
-        $sql = "INSERT INTO tache
-                VALUES(
-                    NULL,
-                     ". $this->getDb()->quote($tache->getTitre()) .",
-                     ". $this->getDb()->quote($tache->getDescription()) . ",
-                     ". $tache->getEcheance() .",
-                    '". $tache->getTimeRealisation() ."',
-                    '". $tache->getStatut() .")";
-        return $this->getDb()->exec($sql);
+        return true;
     }
 
     public function update(todoTache $tache)
     {
-        $sql = "UPDATE tache SET titre =
-                titre = " . $tache->getTitre() . ",
-                description = " . $tache->getDescription() . ",
-                echeance = " . $tache->getEcheance() . ",
-                timeRealisation = " . $tache->getTimeRealisation() . "
-                statut = " . $tache->getStatut() . " WHERE idTache = " . $tache->getIdTache() . "";
-
+         $sql = "UPDATE tache SET titre =
+                titre = ".$tache->getTitre() .",
+                description = " .$tache->getDescription() .",
+                echeance = " .$tache->getEcheance() .",
+                timeRealisation = " .$tache->getTimeRealisation() ."
+                statut = " .$tache->getStatut()." WHERE idTache = " .$tache->getIdTache() ."";
+         
         return $this->getDb()->exec($sql);
     }
 
@@ -73,20 +74,16 @@ class Tache
         $result   = $query->fetchAll(\PDO::FETCH_ASSOC);
         $taches = array();
 
-        $query = $this->getDb()->query($sql);
-        $result = $query->fetchAll(\PDO::FETCH_ASSOC);
-        $taches = array();
         foreach ($result as $t) {
             $taches[] = $this->rowToObject($t);
         }
-
         return $taches;
     }
 
     public function findById($id)
     {
-        $sql = $this->getSqlTache();
-        $sql .= " WHERE idTache=" . (int)$id;
+        $sql  = $this->getSqlTache();
+        $sql .= " WHERE idTache=" . (int) $id;
         $sql .= " GROUP BY idTache";
 
         $query = $this->getDb()->query($sql);
@@ -99,7 +96,6 @@ class Tache
         return null;
     }
 
-
     public function delete($id)
     {
         $sql = "DELETE FROM tache WHERE id = " . $id . "";
@@ -108,36 +104,42 @@ class Tache
         return $this->getDb()->exec($sqlAssignation);
 
     }
+    
+    public function removeAssign($idUser, $idTache) {
+        $sql = "DELETE FROM assignation WHERE idUser = ".$idUser." AND idTache= ".$idTache."";
+            
+        return $this->getDb()->exec($sql);
+    }
 
     public function rowToObject(array $row)
     {
         $tache = new todoTache();
         $tache->setId($row['idTache'])
-            ->setTitre($row['titre'])
-            ->setDescription($row['description'])
-            ->setEcheance($row['echeance'])
-            ->setTimeRealisation($row['timeRealisation'])
-            ->setStatut($row['statut']);
+                ->setTitre($row['titre'])
+                ->setDescription($row['description'])
+                ->setEcheance($row['echeance'])
+                ->setTimeRealisation($row['timeRealisation'])
+                ->setStatut($row['statut']);
         if (isset($row['idUser'])) {
-
-            $sqlUser = "SELECT idUser, name, firstname, email, login, password, statut FROM user AS u JOIN assignation AS a ON a.idUser = u.id WHERE idTache = " . $row['idTache'] . "";
+            
+            $sqlUser = "SELECT idUser, name, firstname, email, login, password, statut FROM user AS u JOIN assignation AS a ON a.idUser = u.id WHERE idTache = ".$row['idTache']."";
             $queryUser = $this->getDb()->query($sqlUser);
-
+            
             foreach ($queryUser->fetchAll(\PDO::FETCH_ASSOC) as $row) {
-                $user = new User();
+                $user = new todoUser();
                 $user->setId($row['idUser'])
-                    ->setName($row['name'])
-                    ->setFirstname($row['firstname'])
-                    ->setEmail($row['email'])
-                    ->setLogin($row['login'])
-                    ->setPassword($row['password'])
-                    ->setStatut($row['statut']);
-
+                        ->setName($row['name'])
+                        ->setFirstname($row['firstname'])
+                        ->setEmail($row['email'])
+                        ->setLogin($row['login'])
+                        ->setPassword($row['password'])
+                        ->setStatut($row['statut']);
+                
                 $tache->setUsers($user);
             }
         }
-        return $tache;
-
+       
+        return $tache; 
     }
 
     protected function getSqlTache()

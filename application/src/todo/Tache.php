@@ -1,5 +1,4 @@
 <?php
-
 namespace todo;
 
 class Tache {
@@ -22,7 +21,7 @@ class Tache {
         $this->setEcheance($echeance);
         $this->setTimeRealisation($timeRealisation);
         $this->setStatut($statut);
-        $this->setStatut($users);
+        $this->setUsers($users);
     }
 
     
@@ -30,8 +29,11 @@ class Tache {
         return $this->users;
     }
 
-    function setUsers(User $users) {
-        array_push($this->users, $users);
+    function setUsers($users) {
+        if(null !== $users){
+            $this->users[] = $users;
+            return $this;
+        }
     }
 
     function getTitre() {
@@ -93,7 +95,7 @@ class Tache {
     }
 
     function setStatut($statut) {
-        $this->statut = $statut;
+        $this->statut = (int) $statut;
         return $this;
     }
     

@@ -34,6 +34,20 @@ class User {
         return $users;
     }
     
+    public function selectById($id) {
+        $sql = $this->getSqlUser();
+        $sql .= " WHERE idUser=" . (int) $id;
+        
+        $query    = $this->getDb()->query($sql);
+        $result   = $query->fetchAll(\PDO::FETCH_ASSOC);
+        
+        if ($result) {
+            return $this->rowToObject($result);
+        }
+
+        return null;
+    }
+    
     public function rowToObject(array $row)
     {
         $user = new modelUser();
