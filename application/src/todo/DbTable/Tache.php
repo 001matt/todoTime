@@ -23,15 +23,29 @@ class Tache
 
     public function add(todoTache $tache)
     {
+        //foreach utilisateur
+        foreach ($tache->getUsers() as $user) {
+            
+            $sqlInsertAssign = "INSERT INTO assignation
+                    VALUES(
+                            NULL,
+                            ". $tache->getId() .",
+                            ". $user->getId() . ",
+                            ". $tache->getTimeRealisation() .",
+                           '". date('Y-m-d', new \DateTime()) ."',
+                           '". date('Y-m-d', new \DateTime()) .")";
+        }
+        
+        $this->getDb()->exec($sqlInsertAssign);
+        
         $sql = "INSERT INTO tache
                 VALUES(
                     NULL,
-                     " . $this->getDb()->quote($tache->getTitre()) . ",
-                     " . $this->getDb()->quote($tache->getDescription()) . ",
-                     " . $tache->getEcheance() . ",
-                    '" . $tache->getTimeRealisation() . "',
-                    '" . $tache->getStatut() . ")";
-
+                     ". $this->getDb()->quote($tache->getTitre()) .",
+                     ". $this->getDb()->quote($tache->getDescription()) . ",
+                     ". $tache->getEcheance() .",
+                    '". $tache->getTimeRealisation() ."',
+                    '". $tache->getStatut() .")";
         return $this->getDb()->exec($sql);
     }
 
@@ -51,9 +65,13 @@ class Tache
     {
         $sql = $this->getSqlTache();
         if (!empty($id)) {
-            $sql .= " WHERE idUser=" . (int)$id;
+            $sql .= " WHERE idUser=" . (int) $id;
         }
         $sql .= " GROUP BY idTache";
+
+        $query    = $this->getDb()->query($sql);
+        $result   = $query->fetchAll(\PDO::FETCH_ASSOC);
+        $taches = array();
 
         $query = $this->getDb()->query($sql);
         $result = $query->fetchAll(\PDO::FETCH_ASSOC);

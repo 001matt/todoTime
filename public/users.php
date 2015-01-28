@@ -1,12 +1,13 @@
-<?php
+<?php 
 require_once '../application/init.php';
 
 use todo\DbTable\Tache;
+use todo\DbTable\User;
 
 $crudTache = new Tache($connection);
-$taches = $crudTache->findAll(2);
-include 'header.php'
-?>
+$taches = $crudTache->findAll('2');
+    
+include 'header.php'?>
 
     <div class="panel panel-primary col-sx-12" xmlns="http://www.w3.org/1999/html">
         <div class="panel-heading">
