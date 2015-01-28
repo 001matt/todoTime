@@ -5,8 +5,8 @@ use todo\DbTable\Tache;
  session_start();
 $crudTache = new Tache($connection);
 $taches = $crudTache->findAll();
-include 'header.php';
-if(isset($_GET['id'])){
+
+if (isset($_GET['id'])) {
     $crudTache->delete($_GET['id']);
 }
 
@@ -43,7 +43,8 @@ include 'header.php';
                 echo $value->getName() . ' ' . $value->getFirstname() . '<br>';
             }; ?></td>
         <td><a href="form.php?id=<?= $tache->getId(); ?>" class="btn btn-primary"><i class="fa fa-pencil fa-2x"></i></a>
-            <a href="admin.php?id=<?= $tache->getId(); ?>" class="btn btn-danger"><i class="fa fa-trash-o fa-2x"></i></a>
+            <a href="admin.php?id=<?= $tache->getId(); ?>" class="btn btn-danger"><i
+                    class="fa fa-trash-o fa-2x"></i></a>
         </td>
     </tr>
 <?php endforeach; ?>

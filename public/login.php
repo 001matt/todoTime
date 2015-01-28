@@ -45,7 +45,8 @@ session_start();
                         <label for="password" class="col-sm-4 control-label"><i class="fa fa-lock fa-2x"></i></label>
 
                         <div class="col-sm-8">
-                            <input type="password" class="form-control login-form" name="password" placeholder="Mot de passe">
+                            <input type="password" class="form-control login-form" name="password"
+                                   placeholder="Mot de passe">
                         </div>
                     </div>
                     <div class="form-group">
