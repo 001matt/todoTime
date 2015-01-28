@@ -5,7 +5,7 @@ use todo\DbTable\Tache;
 
 $crudTache = new Tache($connection);
 $taches = $crudTache->findAll();
-
+var_dump($taches);
 if(isset($_GET['id'])){
     $crudTache->delete($_GET['id']);
 }

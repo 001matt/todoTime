@@ -14,6 +14,7 @@ if(isset($_GET['id'])){
     $id = null;
     $taches = new \todo\Tache();
 }
+$usersTache = $taches->getUsers();
 include 'header.php'?>
 
 <div class="panel panel-info formulaire">
@@ -55,10 +56,10 @@ include 'header.php'?>
                 <label for="selectedUsers" class="col-sm-2 control-label">Utilisateur</label>
                 <div class="col-sm-10">
                     <select name="selectedUsers" id="selectedUsers" class="form-control" multiple>
-                        <?php if(!empty($taches->getUsers())) { ?>
-                        <?php foreach ($taches->getUsers() as $user) : ?>
-                        <option value="<?= $user->getId();?>"><?= $user->getName().' '.$user->getFirstname() ;?></option>
-                        <?php endforeach;?>
+                        <?php if(!empty($usersTache)) { ?>
+                            <?php foreach ($taches->getUsers() as $user) : ?>
+                            <option value="<?= $user->getId();?>"><?= $user->getName().' '.$user->getFirstname() ;?></option>
+                            <?php endforeach;?>
                         <?php };?>
                     </select>
                 </div>
