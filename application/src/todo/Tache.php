@@ -15,6 +15,17 @@ class Tache {
     private $statut;
     private $users=array();
     
+    public function __construct($id = null, $titre = null, $description = null, $echeance = null , $timeRealisation = null, $statut = null, $users = null) {
+        $this->setId($id);
+        $this->setTitre($titre);
+        $this->setDescription($description);
+        $this->setEcheance($echeance);
+        $this->setTimeRealisation($timeRealisation);
+        $this->setStatut($statut);
+        $this->setStatut($users);
+    }
+
+    
     function getUsers() {
         return $this->users;
     }
@@ -43,9 +54,13 @@ class Tache {
         return $this->statut;
     }
     
-    public function getStatutToString($statut) {
+    public function getStatutToString($statut = null) {
         $tab = array(0 => 'Assignée', 1 => 'En cours', 2 => 'Terminée');
-        return $tab[$statut];
+        if(!empty($statut)){
+            return $tab[$statut];
+        }else{
+            return $tab;
+        }
     }
 
     function getId() {
@@ -89,6 +104,6 @@ class Tache {
      */
     public function assignTo($idUser) {
         $sql = "";
-    } 
+    }
 
 }

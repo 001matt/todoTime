@@ -22,6 +22,21 @@ class Tache {
 
     public function add(todoTache $tache)
     {
+        //foreach utilisateur
+        foreach ($tache->getUsers() as $user) {
+            
+            $sqlInsertAssign = "INSERT INTO assignation
+                    VALUES(
+                            NULL,
+                            ". $tache->getId() .",
+                            ". $user->getId() . ",
+                            ". $tache->getTimeRealisation() .",
+                           '". date('Y-m-d', new \DateTime()) ."',
+                           '". date('Y-m-d', new \DateTime()) .")";
+        }
+        
+        $this->getDb()->exec($sqlInsertAssign);
+        
         $sql = "INSERT INTO tache
                 VALUES(
                     NULL,
@@ -30,7 +45,7 @@ class Tache {
                      ". $tache->getEcheance() .",
                     '". $tache->getTimeRealisation() ."',
                     '". $tache->getStatut() .")";
-
+        
         return $this->getDb()->exec($sql);
     }
 
@@ -46,11 +61,14 @@ class Tache {
         return $this->getDb()->exec($sql);
     }
 
-    public function findAll()
+    public function findAll($id = null)
     {
         $sql = $this->getSqlTache();
+        if (!empty($id)) {
+            $sql .= " WHERE idUser=" . (int) $id;
+        }
         $sql .= " GROUP BY idTache";
-        
+
         $query    = $this->getDb()->query($sql);
         $result   = $query->fetchAll(\PDO::FETCH_ASSOC);
         $taches = array();
