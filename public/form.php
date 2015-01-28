@@ -22,12 +22,11 @@ include 'header.php'?>
         <h3>Formulaire de création et de modification de tâches</h3>
     </div>
     <div class="panel-body">
-        <form class="form-horizontal" action="http://127.0.0.1/todoTime/application/controller/ctrlTache.php?action=enregistrerTache" method="POST">
+        <form action="http://127.0.0.1/todoTime/application/controller/ctrlTache.php?action=enregistrerTache" method="POST">
             <div class="form-group">
-                <label for="title" class="col-sm-2 control-label">Titre de la tâche</label>
-                <div class="col-sm-10">
-                    <input type="text" class="form-control" name="titre" id="titre" value="<?= empty($id) ? '' : $taches->getTitre() ;?>" placeholder="Titre de la tâche">
-                </div>
+                <label for="title" class="control-label">Titre de la tâche</label>
+                <input type="text" class="form-control" name="titre" id="titre" value="<?= empty($id) ? '' : $taches->getTitre() ;?>" placeholder="Titre de la tâche">
+
 
                 <div class="form-group">
                 <label for="description">Description de la tâche</label>

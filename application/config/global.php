@@ -18,7 +18,7 @@ define('IMG_PATH', BASE_URL . 'image/');
 define('DB_USERNAME', 'root');
 define('DB_PASSWORD', '');
 define('DB_HOST', '127.0.0.1');
-define('DB_NAME', 'projet');
+define('DB_NAME', 'todotime');
 define('DB_ENCODING', 'UTF8');
 define('DB_DSN', sprintf('mysql:host=%s;dbname=%s;', 
     DB_HOST,

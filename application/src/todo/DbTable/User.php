@@ -57,7 +57,7 @@ class User {
                 ->setEmail($row['email'])
                 ->setLogin($row['login'])
                 ->setPassword($row['password'])
-                ->setStatut($row['statut']);
+                ->setStatut($row['state']);
         
         return $user; 
     }
