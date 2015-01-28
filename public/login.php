@@ -1,3 +1,6 @@
+<?php include 'header.php';
+session_start();
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -13,9 +16,7 @@
             padding-bottom: 40px;
         }
     </style>
-
     <link rel="stylesheet" href="css/main.css">
-
     <script src="js/vendor/modernizr-2.6.2-respond-1.1.0.min.js"></script>
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -32,7 +33,7 @@
                 <h3>Formulaire de connexion</h3>
             </div>
             <div class="panel-body">
-                <form class="form-horizontal">
+                <form class="form-horizontal" action="../application/controller/ctrlConnexion.php?action=login" method="POST">
                     <div class="form-group">
                         <label for="email" class="col-sm-4 control-label"><i class="fa fa-user fa-2x"></i></label>
 
@@ -44,7 +45,8 @@
                         <label for="password" class="col-sm-4 control-label"><i class="fa fa-lock fa-2x"></i></label>
 
                         <div class="col-sm-8">
-                            <input type="password" class="form-control login-form" name="password" placeholder="Mot de passe">
+                            <input type="password" class="form-control login-form" name="password"
+                                   placeholder="Mot de passe">
                         </div>
                     </div>
                     <div class="form-group">
@@ -59,4 +61,3 @@
 </main>
 </body>
 </html>
-

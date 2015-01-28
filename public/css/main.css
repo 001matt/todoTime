@@ -2,7 +2,6 @@
    Author's custom styles
    ========================================================================== */
 
-
 main.container {
     margin-top: 100px;
 }
@@ -14,8 +13,8 @@ main.container {
 }
 
 /*-----------------Panel--------------------------*/
-[class*=panel-]>.panel-heading {
-    color: rgba(255,255,255,.84);
+[class*=panel-] > .panel-heading {
+    color: rgba(255, 255, 255, .84);
     border: 0;
 }
 
@@ -24,7 +23,7 @@ main.container {
 }
 
 .panel {
-    box-shadow: 0 1px 6px rgba(0,0,0,.12),0 1px 6px rgba(0,0,0,.12);
+    box-shadow: 0 1px 6px rgba(0, 0, 0, .12), 0 1px 6px rgba(0, 0, 0, .12);
     border-radius: 0;
     border: none;
 }
@@ -33,19 +32,19 @@ main.container {
     background-color: #009587;
 }
 
-.panel-danger>.panel-heading {
+.panel-danger > .panel-heading {
     background-color: #f44336;
 }
 
-.panel-success>.panel-heading {
+.panel-success > .panel-heading {
     background-color: #0f9d58;
 }
 
-.panel-warning>.panel-heading {
+.panel-warning > .panel-heading {
     background-color: #ff5722;
 }
 
-.panel-info>.panel-heading {
+.panel-info > .panel-heading {
     background-color: #03a9f4;
 }
 
@@ -125,7 +124,7 @@ main.container {
     border-radius: 3px;
 }
 
-.opac{
+.opac {
     width: 100%;
     height: 100%;
     background: #222;
@@ -133,7 +132,7 @@ main.container {
     z-index: 99999999999;
 }
 
-.login-form{
+.login-form {
     padding: 0;
     float: none;
     border: 0;
