@@ -2,6 +2,7 @@
    Author's custom styles
    ========================================================================== */
 
+
 main.container {
     margin-top: 100px;
 }
@@ -13,18 +14,39 @@ main.container {
 }
 
 /*-----------------Panel--------------------------*/
+[class*=panel-]>.panel-heading {
+    color: rgba(255,255,255,.84);
+    border: 0;
+}
+
 .panel-body.tableau {
     padding: 0;
 }
 
 .panel {
-    box-shadow: 0 3px 10px rgba(0, 0, 0, .23), 0 3px 10px rgba(0, 0, 0, .16);
+    box-shadow: 0 1px 6px rgba(0,0,0,.12),0 1px 6px rgba(0,0,0,.12);
     border-radius: 0;
     border: none;
 }
 
 .panel-primary > .panel-heading {
     background-color: #009587;
+}
+
+.panel-danger>.panel-heading {
+    background-color: #f44336;
+}
+
+.panel-success>.panel-heading {
+    background-color: #0f9d58;
+}
+
+.panel-warning>.panel-heading {
+    background-color: #ff5722;
+}
+
+.panel-info>.panel-heading {
+    background-color: #03a9f4;
 }
 
 .formulaire {
@@ -111,6 +133,21 @@ main.container {
     z-index: 99999999999;
 }
 
+.login-form{
+    padding: 0;
+    float: none;
+    border: 0;
+    box-shadow: none;
+    border-radius: 0;
+    background: transparent;
+    border-bottom: 1px solid #757575;
+}
+
+.login-form:focus {
+    border-color: transparent;
+    outline: 0;
+    box-shadow: none;
+}
 
 
 

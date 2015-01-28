@@ -45,8 +45,9 @@ include 'header.php'
     </div>
 
     <!-- Modal -->
-    <div class="">
-    <div class="modal fade opac" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="opac">
+    <div class="modal fade " id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-backdrop fade in" style="height: 984px;"></div>
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
@@ -54,10 +55,10 @@ include 'header.php'
                     <h4 class="modal-title" id="myModalLabel">Chronomètre</h4>
                 </div>
                 <div class="modal-body">
-                    <h2 id="chronotime">0:00:00:00</h2>
-                    <form name="chronoForm">
-                        <button class="btn" type="button" name="startstop" value="start!" onClick="chronoStart()" ><i class="fa fa-play"></i></button>
-                        <input type="button" name="reset" value="reset!" onClick="chronoReset()" />
+                    <h2 class="text-center" id="chronotime">0:00:00:00</h2>
+                    <form class="text-center" name="chronoForm">
+                        <button class="btn btn-info" type="button" name="startstop" value="start!" onClick="chronoStart()" ><i class="fa fa-play"></i></button>
+                        <button class="btn btn-info" type="button" name="reset" value="reset!" onClick="chronoReset()" ><i class="fa fa-refresh"></i></button>
                     </form>
                 </div>
             </div>

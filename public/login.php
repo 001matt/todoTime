@@ -37,14 +37,14 @@
                         <label for="email" class="col-sm-4 control-label"><i class="fa fa-user fa-2x"></i></label>
 
                         <div class="col-sm-8">
-                            <input type="email" class="form-control" name="email" placeholder="Login">
+                            <input type="email" class="form-control login-form" name="email" placeholder="Login">
                         </div>
                     </div>
                     <div class="form-group">
                         <label for="password" class="col-sm-4 control-label"><i class="fa fa-lock fa-2x"></i></label>
 
                         <div class="col-sm-8">
-                            <input type="password" class="form-control" name="password" placeholder="Mot de passe">
+                            <input type="password" class="form-control login-form" name="password" placeholder="Mot de passe">
                         </div>
                     </div>
                     <div class="form-group">
