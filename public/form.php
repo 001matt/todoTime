@@ -1,4 +1,4 @@
-<?php 
+<?php
 require_once '../application/init.php';
 
 use todo\DbTable\Tache;
@@ -10,7 +10,7 @@ $users = $crudUser->selectAllUser();
 if(isset($_GET['id'])){
     $id =(int) $_GET['id'];
     $taches = $crudTache->findById($id);
-}else{
+} else {
     $id = null;
 }
 include 'header.php'?>
@@ -26,21 +26,18 @@ include 'header.php'?>
                 <div class="col-sm-10">
                     <input type="text" class="form-control" name="titre" id="titre" value="<?= empty($id) ? '' : $taches->getTitre() ;?>" placeholder="Titre de la tâche">
                 </div>
-            </div>
 
             <div class="form-group">
                 <label for="description" class="col-sm-2 control-label">Description de la tâche</label>
                 <div class="col-sm-10">
                     <textarea type="textarea" rows="3" class="form-control" name="description" id="description" placeholder="Description de la tâche"><?= empty($id) ? '' : $taches->getDescription(); ?></textarea>
                 </div>
-            </div>
 
             <div class="form-group">
                 <label for="echeance" class="col-sm-2 control-label">Echéance</label>
                 <div class="col-sm-10">
                     <input type="date" id="echeance" name="echeance" class="form-control"  value="<?= empty($id) ? '' : $taches->getEcheance() ;?>" name="echeance" >
                 </div>
-            </div>
 
             <div class="form-group">
                 <label for="echeance" class="col-sm-2 control-label">Temps prévisionel</label>
@@ -95,9 +92,8 @@ include 'header.php'?>
                     <?php } ?>
                     <button type="submit" class="btn btn-danger">Annuler</button>
                 </div>
-            </div>
-        </form>
+            </form>
+        </div>
     </div>
-</div>
 
 <?php include 'footer.php'?>

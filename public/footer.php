@@ -2,16 +2,16 @@
 
 </main>
 
-            <hr>
+<hr>
 
-            <footer>
-                <p>© Company 2014</p>
-            </footer>
+<footer>
+    <p>© Company 2014</p>
+</footer>
 
-        </div> <!-- /container -->
+</div> <!-- /container -->
 
-        <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
-        <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.8.3.min.js"><\/script>')</script>
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+<script>window.jQuery || document.write('<script src="js/vendor/jquery-1.8.3.min.js"><\/script>')</script>
 
         <script src="js/vendor/bootstrap.min.js"></script>
         <script src="js/listUser.js"></script>
