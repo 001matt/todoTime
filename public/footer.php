@@ -1,14 +1,8 @@
 <hr>
 </main> <!-- /container -->
 <footer class="container">
-    <p>© Company 2014</p>
+    <p>© IP-Formation 2015</p>
 </footer>
-
-
-<!--<script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
-<script>window.jQuery || document.write('<script src="js/vendor/jquery-1.8.3.min.js"><\/script>')</script>-->
-
-
 
 <script type="text/javascript" src="js/vendor/jquery-2.1.3.min.js"></script>
 <script src="js/vendor/bootstrap.min.js"></script>
@@ -19,9 +13,19 @@
 <script src="//code.jquery.com/ui/1.11.2/jquery-ui.js"></script>
 <script>
     jQuery(function($){
-        $('.datepicker').datepicker({
-            dateFormat : 'dd/mm/yy',
-            minDate : 0
+        $( ".datepicker" ).datepicker({
+            altField: "#datepicker",
+            closeText: 'Fermer',
+            prevText: 'Précédent',
+            nextText: 'Suivant',
+            currentText: 'Aujourd\'hui',
+            monthNames: ['Janvier', 'Février', 'Mars', 'Avril', 'Mai', 'Juin', 'Juillet', 'Août', 'Septembre', 'Octobre', 'Novembre', 'Décembre'],
+            monthNamesShort: ['Janv.', 'Févr.', 'Mars', 'Avril', 'Mai', 'Juin', 'Juil.', 'Août', 'Sept.', 'Oct.', 'Nov.', 'Déc.'],
+            dayNames: ['Dimanche', 'Lundi', 'Mardi', 'Mercredi', 'Jeudi', 'Vendredi', 'Samedi'],
+            dayNamesShort: ['Dim.', 'Lun.', 'Mar.', 'Mer.', 'Jeu.', 'Ven.', 'Sam.'],
+            dayNamesMin: ['D', 'L', 'M', 'M', 'J', 'V', 'S'],
+            weekHeader: 'Sem.',
+            dateFormat: 'dd-mm-yy'
         });
         $('.timepicker2').timepicker({
             minuteStep: 1,

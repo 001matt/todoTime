@@ -19,8 +19,9 @@ define('DB_USERNAME', 'root');
 define('DB_PASSWORD', '');
 define('DB_HOST', '127.0.0.1');
 define('DB_NAME', 'todotime');
-define('DB_ENCODING', 'UTF8');
-define('DB_DSN', sprintf('mysql:host=%s;dbname=%s;', 
+define('DB_ENCODING', 'utf8');
+define('DB_DSN', sprintf('mysql:host=%s;dbname=%s;charset=%s;',
     DB_HOST,
-    DB_NAME
+    DB_NAME,
+    DB_ENCODING
 ));

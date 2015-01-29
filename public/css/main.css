@@ -6,17 +6,44 @@ main.container {
     margin-top: 100px;
 }
 
-.login {
-    width: 35%;
-    margin: 0 auto;
-
-}
 
 .popover-title {
     font-size: 14px;
     background-color: #009587;
     color: #fff;
 
+}
+
+p > button {
+    margin-left: 30px;
+}
+
+.navbar-inverse {
+    background: #455a64;
+    border: none;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.26);
+}
+
+.navbar-inverse .navbar-brand {
+    color: #FFFFFF;
+}
+
+.navbar-inverse .navbar-brand:hover {
+    color: #9d9d9d;
+    background-color: transparent;
+}
+
+.navbar-inverse .navbar-text {
+    color: #FFFFFF;
+    font-size: 16px;
+    text-transform: capitalize;
+    font-weight: bold;
+}
+
+.navbar-text {
+    margin-top: 0;
+    margin-bottom: 0;
+    margin-left: 15px;
 }
 
 /*-----------------Panel--------------------------*/
@@ -101,6 +128,7 @@ main.container {
     box-shadow: 0 6px 10px rgba(0, 0, 0, .23), 0 10px 30px rgba(0, 0, 0, .19);
 }
 
+
 .btn {
     position: relative;
     padding: 8px 25px;
@@ -115,6 +143,10 @@ main.container {
     outline: none !important;
 }
 
+.form-group .btn {
+    margin-right: 10px;
+}
+
 .btn-sm {
     padding: 5px 10px;
     font-size: 12px;
@@ -122,12 +154,23 @@ main.container {
     border-radius: 3px;
 }
 
-/*---------------Form---------------------------*/
-
-.formulaire {
-    width: 70%;
-    margin: 0 auto;
+.table > tbody > tr > td > a {
+    border-radius: 50%;
+    padding: 5px 10px;
+    text-align: center;
 }
+
+.navbar-inverse .navbar-toggle {
+    border-color: transparent;
+}
+
+.panel-heading > h3 > a{
+    bottom: 10px;
+    border-radius: 50%;
+    padding: 5px 10px;
+}
+
+/*---------------Form---------------------------*/
 
 .login-form {
     padding: 0;
@@ -145,6 +188,31 @@ main.container {
     box-shadow: none;
 }
 
+.formulaire label {
+    margin: 20px 0 20px 10px;
+}
+
+@media (max-width: 767px){
+    .login {
+        width: 100%;
+        margin: 0 auto;
+
+    }
+}
+@media (min-width: 768px){
+    .login {
+        width: 50%;
+        margin: 0 auto;
+
+    }
+}
+@media (min-width: 991px){
+    .login {
+        width: 35%;
+        margin: 0 auto;
+
+    }
+}
 
 /* ==========================================================================
    Timepicker
@@ -153,32 +221,40 @@ main.container {
 .bootstrap-timepicker {
     position: relative;
 }
+
 .bootstrap-timepicker.pull-right .bootstrap-timepicker-widget.dropdown-menu {
     left: auto;
     right: 0;
 }
+
 .bootstrap-timepicker.pull-right .bootstrap-timepicker-widget.dropdown-menu:before {
     left: auto;
     right: 12px;
 }
+
 .bootstrap-timepicker.pull-right .bootstrap-timepicker-widget.dropdown-menu:after {
     left: auto;
     right: 13px;
 }
+
 .bootstrap-timepicker .add-on {
     cursor: pointer;
 }
+
 .bootstrap-timepicker .add-on i {
     display: inline-block;
     width: 16px;
     height: 16px;
 }
+
 .bootstrap-timepicker-widget.dropdown-menu {
     padding: 4px;
 }
+
 .bootstrap-timepicker-widget.dropdown-menu.open {
     display: inline-block;
 }
+
 .bootstrap-timepicker-widget.dropdown-menu:before {
     border-bottom: 7px solid rgba(0, 0, 0, 0.2);
     border-left: 7px solid transparent;
@@ -187,6 +263,7 @@ main.container {
     display: inline-block;
     position: absolute;
 }
+
 .bootstrap-timepicker-widget.dropdown-menu:after {
     border-bottom: 6px solid #FFFFFF;
     border-left: 6px solid transparent;
@@ -195,54 +272,68 @@ main.container {
     display: inline-block;
     position: absolute;
 }
+
 .bootstrap-timepicker-widget.timepicker-orient-left:before {
     left: 6px;
 }
+
 .bootstrap-timepicker-widget.timepicker-orient-left:after {
     left: 7px;
 }
+
 .bootstrap-timepicker-widget.timepicker-orient-right:before {
     right: 6px;
 }
+
 .bootstrap-timepicker-widget.timepicker-orient-right:after {
     right: 7px;
 }
+
 .bootstrap-timepicker-widget.timepicker-orient-top:before {
     top: -7px;
 }
+
 .bootstrap-timepicker-widget.timepicker-orient-top:after {
     top: -6px;
 }
+
 .bootstrap-timepicker-widget.timepicker-orient-bottom:before {
     bottom: -7px;
     border-bottom: 0;
     border-top: 7px solid #999;
 }
+
 .bootstrap-timepicker-widget.timepicker-orient-bottom:after {
     bottom: -6px;
     border-bottom: 0;
     border-top: 6px solid #ffffff;
 }
+
 .bootstrap-timepicker-widget a.btn,
 .bootstrap-timepicker-widget input {
     border-radius: 4px;
 }
+
 .bootstrap-timepicker-widget table {
     width: 100%;
     margin: 0;
 }
+
 .bootstrap-timepicker-widget table td {
     text-align: center;
     height: 30px;
     margin: 0;
     padding: 2px;
 }
+
 .bootstrap-timepicker-widget table td:not(.separator) {
     min-width: 30px;
 }
+
 .bootstrap-timepicker-widget table td span {
     width: 100%;
 }
+
 .bootstrap-timepicker-widget table td a {
     border: 1px transparent solid;
     width: 100%;
@@ -252,6 +343,7 @@ main.container {
     outline: 0;
     color: #333;
 }
+
 .bootstrap-timepicker-widget table td a:hover {
     text-decoration: none;
     background-color: #eee;
@@ -260,28 +352,34 @@ main.container {
     border-radius: 4px;
     border-color: #ddd;
 }
+
 .bootstrap-timepicker-widget table td a i {
     margin-top: 2px;
     font-size: 18px;
 }
+
 .bootstrap-timepicker-widget table td input {
     width: 25px;
     margin: 0;
     text-align: center;
 }
+
 .bootstrap-timepicker-widget .modal-content {
     padding: 4px;
 }
+
 @media (min-width: 767px) {
     .bootstrap-timepicker-widget.modal {
         width: 200px;
         margin-left: -100px;
     }
 }
+
 @media (max-width: 767px) {
     .bootstrap-timepicker {
         width: 100%;
     }
+
     .bootstrap-timepicker .dropdown-menu {
         width: 100%;
     }

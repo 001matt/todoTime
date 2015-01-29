@@ -1,8 +1,7 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 <head>
-    <!--<meta http-equiv="Content-Type" content="text/html; charset=utf-8">-->
-    <meta charset="UTF-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>projet</title>
@@ -50,7 +49,8 @@
         </div>
         <div id="navbar" class="navbar-collapse collapse">
             <form class="navbar-form navbar-right" action="../application/controller/ctrlConnexion.php?action=logout" method="POST">
-                <button type="submit" class="btn btn-success">Déconnexion</button>
+                <p class="navbar-text navbar-right"><?php echo $_SESSION['nom'].' '.$_SESSION['prenom'] ?> <button type="submit" class="btn btn-primary">Déconnexion</button></p>
+
             </form>
         </div>
         <!--/.navbar-collapse -->
