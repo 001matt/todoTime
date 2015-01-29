@@ -226,7 +226,6 @@ class Tache {
                 array_push($users, $user);
                 
         }
-        var_dump($users);die();
         return $users;
     }
     

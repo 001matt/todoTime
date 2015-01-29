@@ -4,7 +4,7 @@ use Ipf\Db\Connection\Pdo;
 use Ipf\Loader\ClassLoader;
 
 //Header
-header("Content-Type: text/html; charset=utf8");
+header('Content-type: text/html; charset=UTF-8');
 
 // Loading conf
 require_once 'config/global.php';

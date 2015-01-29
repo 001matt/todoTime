@@ -1,4 +1,5 @@
 <?php
+session_start();
 require_once '../application/init.php';
 
 session_start();
@@ -19,7 +20,7 @@ if (isset($_GET['id'])) {
 $usersTache = $taches->getUsers();
 include 'header.php'?>
 
-<div class="panel panel-info formulaire">
+<div class="panel panel-primary formulaire">
     <div class="panel-heading">
         <h3>Formulaire de création et de modification de tâches</h3>
     </div>
@@ -27,7 +28,7 @@ include 'header.php'?>
         <form action="http://127.0.0.1/todoTime/application/controller/ctrlTache.php?action=enregistrerTache" method="POST">
             <div class="form-group">
                 <label for="title" class="control-label">Titre de la tâche</label>
-                <input type="text" class="form-control" name="titre" id="titre" value="<?= empty($id) ? '' : $taches->getTitre() ;?>" placeholder="Titre de la tâche">
+                <input type="text" class="form-control login-form" name="titre" id="titre" value="<?= empty($id) ? '' : $taches->getTitre() ;?>" placeholder="Titre de la tâche">
 
 
                 <div class="form-group">
@@ -42,7 +43,7 @@ include 'header.php'?>
                 </div>
 
                 <div class="form-group input-append bootstrap-timepicker">
-                    <label for="echeance">Temps prévisionel</label>
+                    <label for="echeance">Temps prévisionel <em><small>(utiliser les flèches du clavier)</small></em></label>
                     <input type="text" class="timepicker2 input-small form-control" id="timeRealisation" name="timeRealisation"
                            value="<?= empty($id) ? '' : $taches->getTimeRealisation(); ?>" >
                 </div>
@@ -61,7 +62,7 @@ include 'header.php'?>
                 <?php endif; ?>
 
                 <div class="form-group">
-                    <label for="addUsers">Ajouter des utilisateurs</label>
+                    <label for="addUsers">Ajouter des utilisateurs <em><small>(double cliquez sur un utlisateur pour le sélectionner)</small></em></label>
                     <select name="addUsers[]" id="addUsers" class="form-control" multiple>
                         <?php foreach ($users as $user) : ?>
                             <option
@@ -81,11 +82,11 @@ include 'header.php'?>
                 </div>
                 <div class="form-group">
                     <?php if (empty($id)) { ?>
-                        <input type="submit" value="Créer" class="btn btn-primary"/>
+                        <input type="submit" value="Créer" class="btn btn-primary pull-right"/>
                     <?php } else { ?>
-                        <input type="submit" value="Modifier" class="btn btn-primary"/>
+                        <input type="submit" value="Modifier" class="btn btn-primary pull-right"/>
                     <?php } ?>
-                    <button type="submit" class="btn btn-danger">Annuler</button>
+                    <button type="submit" class="btn btn-danger pull-right">Annuler</button>
                 </div>
             </form>
     </div>
