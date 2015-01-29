@@ -31,6 +31,7 @@
             showMeridian: false,
             defaultTime: false
         });
+        $("#pop").popover();
     });
 </script>
 </body>

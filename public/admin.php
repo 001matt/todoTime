@@ -9,7 +9,6 @@ if (isset($_GET['id'])) {
 
     $crudTache->delete($_GET['id']);
 }
-
 include 'header.php';
 ?>
 
@@ -35,7 +34,13 @@ include 'header.php';
                 <?php foreach ($taches as $tache) : ?>
                     <tr>
                         <td><?= $tache->getTitre(); ?></td>
-                        <td><?= $tache->getDescription(); ?></td>
+                        <td><?php if(iconv_strlen($tache->getDescription()) >= 30){
+                               echo $description = substr($tache->getDescription(),0, 30) . "...";
+                                ?> <a href='#' id='pop' data-toggle='popover' data-trigger='focus' data-content="<?= $tache->getDescription(); ?>" title='Description'>
+voir détails</a><?php
+                            }else{
+                               echo $description = $tache->getDescription();
+                            } ?></td>
                         <td><?= $tache->getEcheance(); ?></td>
                         <td><?= $tache->getTimerealisation(); ?></td>
                         <td><?= $tache->getStatutToString($tache->getStatut()); ?></td>
@@ -51,8 +56,25 @@ include 'header.php';
                 </tbody>
             </table>
         </div>
+        <div class="modal fade " id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-backdrop fade in" style="height: 984px;"></div>
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                                aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title" id="myModalLabel">Description de la tâche</h4>
+                    </div>
+                    <div class="modal-body">
+                        <h4>Description</h4>
+                        <p><?= $tache->getDescription(); ?></p>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
+
     </div>
 </div>
 <?php include 'footer.php' ?>

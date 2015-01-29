@@ -50,7 +50,6 @@ include 'header.php'?>
 </div>
 
 <!-- Modal -->
-<div class="opac">
     <div class="modal fade " id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
         <div class="modal-backdrop fade in" style="height: 984px;"></div>
         <div class="modal-dialog">
@@ -73,7 +72,6 @@ include 'header.php'?>
             </div>
         </div>
     </div>
-</div>
 
 
 <?php include 'footer.php' ?>
