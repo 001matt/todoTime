@@ -2,8 +2,6 @@
 session_start();
 require_once '../application/init.php';
 
-session_start();
-
 use todo\DbTable\Tache;
 use todo\DbTable\User;
 
