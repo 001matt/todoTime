@@ -34,16 +34,17 @@ class Tache {
         
         $this->getDb()->exec($sql);
         
-        foreach ($tache->getUsers() as $user) {
-            
+        $last_id = $this->getDb()->lastInsertId();
+        
+        foreach ($tache->getUsers() as $key => $user) {
             $sqlInsertAssign = "INSERT INTO assignation
                     VALUES(
                             NULL,
-                            ". $this->getDb()->lastInsertId() .",
-                            ". $user[0] . ",
+                            ". $last_id .",
+                            ". $user . ",
                             '". $tache->getTimeRealisation() ."',
-                           '". date_format(new DateTime, 'Y-m-d H:i:s') ."',
-                           '". date_format(new DateTime, 'Y-m-d H:i:s') ."')";
+                           '". date("Y-m-d H:i:s") ."',
+                           '". date("Y-m-d H:i:s") ."')";
             
             $this->getDb()->exec($sqlInsertAssign);
         }
@@ -107,6 +108,19 @@ class Tache {
     
     public function removeAssign($idUser, $idTache) {
         $sql = "DELETE FROM assignation WHERE idUser = ".$idUser." AND idTache= ".$idTache."";
+            
+        return $this->getDb()->exec($sql);
+    }
+    
+    public function addAssign($idUser, $idTache) {
+        $sql = "INSERT INTO assignation
+                    VALUES(
+                            NULL,
+                            ". $idTache .",
+                            ". $idUser . ",
+                            '". $tache->getTimeRealisation() ."',
+                           '". date("Y-m-d H:i:s") ."',
+                           '". date("Y-m-d H:i:s") ."')";
             
         return $this->getDb()->exec($sql);
     }

@@ -30,8 +30,12 @@ class Tache {
     }
 
     function setUsers($users) {
-        if(null !== $users){
+        if(null !== $users && !is_array($users)){
             $this->users[] = $users;
+            return $this;
+        }
+        else{
+            $this->users = $users;
             return $this;
         }
     }
@@ -54,7 +58,6 @@ class Tache {
 
     function getStatut() {
         return $this->statut;
-        
     }
     
     public function getStatutToString($statut = null) {
@@ -98,15 +101,6 @@ class Tache {
     function setStatut($statut) {
         $this->statut = (int) $statut;
         return $this;
-    }
-    
-    /**
-     * Assugne une tâche a un utilisateur
-     * 
-     * @param type $idUser
-     */
-    public function assignTo($idUser) {
-        $sql = "";
     }
 
 }
