@@ -1,6 +1,8 @@
 <?php
 require_once '../application/init.php';
 
+session_start();
+
 use todo\DbTable\Tache;
 use todo\DbTable\User;
 
@@ -60,7 +62,7 @@ include 'header.php'?>
 
                 <div class="form-group">
                     <label for="addUsers">Ajouter des utilisateurs</label>
-                    <select name="addUsers[]" id="addUsers[]" class="form-control" multiple>
+                    <select name="addUsers[]" id="addUsers" class="form-control" multiple>
                         <?php foreach ($users as $user) : ?>
                             <option
                                 value="<?= $user->getId(); ?>"><?= $user->getName() . ' ' . $user->getFirstname(); ?></option>

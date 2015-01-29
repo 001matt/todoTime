@@ -32,7 +32,7 @@ include 'header.php';
                 </thead>
                 <tbody>
                 <?php foreach ($taches as $tache) : ?>
-                    <tr>
+                    <tr <?php if($tache->getStatut() === 3):?>style="active"<?php endif;?>>
                         <td><?= $tache->getTitre(); ?></td>
                         <td><?php if(iconv_strlen($tache->getDescription()) >= 30){
                                echo $description = substr($tache->getDescription(),0, 30) . "...";

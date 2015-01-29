@@ -53,12 +53,13 @@ class Tache {
 
     public function update(todoTache $tache)
     {
-         $sql = "UPDATE tache SET titre =
-                titre = ".$tache->getTitre() .",
-                description = " .$tache->getDescription() .",
-                echeance = " .$tache->getEcheance() .",
-                timeRealisation = " .$tache->getTimeRealisation() ."
-                statut = " .$tache->getStatut()." WHERE idTache = " .$tache->getIdTache() ."";
+         $sql = "UPDATE tache SET
+                titre = '".$tache->getTitre() ."',
+                description = '" .$tache->getDescription() ."',
+                echeance = '" .$tache->getEcheance() ."',
+                timeRealisation = '" .$tache->getTimeRealisation() ."',
+                statut = " .$tache->getStatut(). "
+                WHERE id = " .$tache->getId() ."";
          
         return $this->getDb()->exec($sql);
     }
@@ -118,7 +119,7 @@ class Tache {
                             NULL,
                             ". $idTache .",
                             ". $idUser . ",
-                            '". $tache->getTimeRealisation() ."',
+                            '". '00:00:00' ."',
                            '". date("Y-m-d H:i:s") ."',
                            '". date("Y-m-d H:i:s") ."')";
             
@@ -162,6 +163,79 @@ class Tache {
         return $tache; 
     }
 
+    public function findUserTacheAssign() {
+        
+        $sql = $this->getSqlTache();
+        $sql .= " GROUP BY idUser";
+        
+        $query    = $this->getDb()->query($sql);
+        $result   = $query->fetchAll(\PDO::FETCH_ASSOC);
+        
+        $users = array();
+        foreach ($result as $t) {
+            $user = array(
+               'idUser' => $t['idUser'],
+               'firstname' => $t['firstname'],
+               'email' => $t['email'],
+               'password' => $t['password'],
+               'state' => $t['state'],
+                );
+
+                $sqlTache = "SELECT * FROM tache AS t JOIN assignation AS a ON a.idTache = t.id WHERE idUser = ".$t['idUser']."";
+                $queryTache = $this->getDb()->query($sqlTache);
+                $taches = array();
+                $heure = 0;
+                $minute = 0;
+                $seconde = 0;
+                $heure2 = 0;
+                $minute2 = 0;
+                $seconde2 = 0;
+                foreach ($queryTache->fetchAll(\PDO::FETCH_ASSOC) as $row) {
+                        $tache = array(
+                   'idTache' => $row['idTache'],
+                   'titre' => $row['titre'],
+                   'description' => $row['description'],
+                   'echeance' => $row['echeance'],
+                   'timeRealisation' => $row['timeRealisation'],
+                   'statut' => $row['statut'],
+                   'reelTime' => $row['reelTime'],
+                   'totalTimePre' => $row['reelTime'],
+                   'totalTimeReel' => $row['reelTime'],
+                    );
+                    $convertPrev = explode(':', $row['timeRealisation']);
+                    $heure += (int)$convertPrev[0];
+                    $minute += (int)$convertPrev[1];
+                    $seconde += (int)$convertPrev[2];
+                    $convertReel = explode(':', $row['reelTime']);
+                    $heure2 += (int)$convertReel[0];
+                    $minute2 += (int)$convertReel[1];
+                    $seconde2 += (int)$convertReel[2];
+                    array_push($taches, $tache);
+                }
+                $heure = $heure*3600;
+                $minute = $minute*60;
+                $time = $heure + $minute + $seconde;
+                $time = date('H:i:s', $time);
+                $heure2 = $heure2*3600;
+                $minute2 = $minute2*60;
+                $time2 = $heure2 + $minute2 + $seconde2;
+                $time2 = date('H:i:s', $time2);
+                array_push($user, $taches);
+                $user['totalTimePre'] = $time;
+                $user['totalTimeReel'] = $time2;
+                array_push($users, $user);
+                
+        }
+        var_dump($users);die();
+        return $users;
+    }
+    
+    public function UserHaveTache() {
+                        
+                
+        return true;
+    }
+    
     protected function getSqlTache()
     {
         $sql = "SELECT *

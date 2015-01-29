@@ -31,10 +31,10 @@ switch($action){
     case 'enregistrerTache':
     {
         if(isset($_POST) && !empty($_POST)){
-            if(!empty($_POST['idTache'])){
-                $tache = new Tache($_POST['idTache'], $_POST['titre'], $_POST['description'], $_POST['echeance'], $_POST['timeRealisation'], $_POST['statut'], $_POST['selectedUsers']);
+            if(!empty($_POST['idTache']) && $_POST['idTache'] !== null && $_POST['idTache'] != 0){
                 $dtTache = new DtTache($connection);
-                $dtTache->add($tache);
+                $tache = new Tache($_POST['idTache'], $_POST['titre'], $_POST['description'], $_POST['echeance'], $_POST['timeRealisation'], $_POST['statut']);
+                $dtTache->update($tache);
             }else{
                 $tache = new Tache($_POST['idTache'], $_POST['titre'], $_POST['description'], $_POST['echeance'], $_POST['timeRealisation'], $_POST['statut'], $_POST['addUsers']);
                 $dtTache = new DtTache($connection);
@@ -54,9 +54,9 @@ switch($action){
         }
         break;
     }
-    case 'addUser' :
+    case 'addAssign' :
     {
-        if(isset($_GET['idTache']) && !empty($_GET['idTache'])){
+        if(isset($_GET['idTache']) && !empty($_GET['idTache']) && isset($_GET['idUser']) && !empty($_GET['idUser'])){
             $dtTache = new DtTache($connection);
             $dtTache->addAssign($_GET['idUser'], $_GET['idTache']);
         }

@@ -47,6 +47,8 @@
                 <span class="icon-bar"></span>
             </button>
             <a class="navbar-brand" href="admin.php">Gestion de tâches</a>
+            <?php if($_SESSION['state'] == 1) 
+                {?><a class="navbar-brand" href="repartitionTemps.php">Répartition du temps</a><?php ;}?>
         </div>
         <div id="navbar" class="navbar-collapse collapse">
             <form class="navbar-form navbar-right" action="../application/controller/ctrlConnexion.php?action=logout" method="POST">
