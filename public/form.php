@@ -61,7 +61,7 @@ include 'header.php'?>
 
                 <div class="form-group">
                     <label for="addUsers">Ajouter des utilisateurs</label>
-                    <select name="addUsers" id="addUsers" class="form-control" multiple>
+                    <select name="addUsers[]" id="addUsers[]" class="form-control" multiple>
                         <?php foreach ($users as $user) : ?>
                             <option
                                 value="<?= $user->getId(); ?>"><?= $user->getName() . ' ' . $user->getFirstname(); ?></option>
@@ -76,7 +76,7 @@ include 'header.php'?>
                             <option value="<?php echo $key; ?>"><?= $value; ?></option>
                         <?php endforeach; ?>
                     </select>
-                    <input type="hidden" name="id" value="<?= $id; ?>">
+                    <input type="hidden" name="idTache" value="<?= $id; ?>">
                 </div>
                 <div class="form-group">
                     <?php if (empty($id)) { ?>
