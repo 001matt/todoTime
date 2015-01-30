@@ -175,6 +175,7 @@ class Tache {
         foreach ($result as $t) {
             $user = array(
                'idUser' => $t['idUser'],
+               'name' => $t['name'],
                'firstname' => $t['firstname'],
                'email' => $t['email'],
                'password' => $t['password'],
@@ -184,12 +185,6 @@ class Tache {
                 $sqlTache = "SELECT * FROM tache AS t JOIN assignation AS a ON a.idTache = t.id WHERE idUser = ".$t['idUser']."";
                 $queryTache = $this->getDb()->query($sqlTache);
                 $taches = array();
-                $heure = 0;
-                $minute = 0;
-                $seconde = 0;
-                $heure2 = 0;
-                $minute2 = 0;
-                $seconde2 = 0;
                 foreach ($queryTache->fetchAll(\PDO::FETCH_ASSOC) as $row) {
                         $tache = array(
                    'idTache' => $row['idTache'],
@@ -202,31 +197,66 @@ class Tache {
                    'totalTimePre' => $row['reelTime'],
                    'totalTimeReel' => $row['reelTime'],
                     );
-                    $convertPrev = explode(':', $row['timeRealisation']);
-                    $heure += (int)$convertPrev[0];
-                    $minute += (int)$convertPrev[1];
-                    $seconde += (int)$convertPrev[2];
-                    $convertReel = explode(':', $row['reelTime']);
-                    $heure2 += (int)$convertReel[0];
-                    $minute2 += (int)$convertReel[1];
-                    $seconde2 += (int)$convertReel[2];
                     array_push($taches, $tache);
                 }
-                $heure = $heure*3600;
-                $minute = $minute*60;
-                $time = $heure + $minute + $seconde;
-                $time = date('H:i:s', $time);
-                $heure2 = $heure2*3600;
-                $minute2 = $minute2*60;
-                $time2 = $heure2 + $minute2 + $seconde2;
-                $time2 = date('H:i:s', $time2);
+                /*$date = \DateTime::createFromFormat('H:i:s', $row['timeRealisation']);
+                $date = date_format($date, 'H:i:s');*/
                 array_push($user, $taches);
-                $user['totalTimePre'] = $time;
-                $user['totalTimeReel'] = $time2;
+                $user['totalTimePre'] = $this->convertirPre();
+                $user['totalTimeReel'] = $this->convertirReel($t['idUser']);
                 array_push($users, $user);
                 
         }
         return $users;
+    }
+    
+    public function convertirPre() {
+        
+        $monday = date('Y-m-d', mktime(0, 0, 0, date('m'), date('d')-date('N')+1, date('Y')));
+        $sunday = date('Y-m-d',strtotime('Sunday'));
+        
+        $sql = "SELECT SEC_TO_TIME( SUM( TIME_TO_SEC( `timeRealisation` ) ) ) AS somme FROM tache WHERE echeance BETWEEN '".$monday."' AND '".$sunday."'";
+        $query    = $this->getDb()->query($sql);
+        $result   = $query->fetch(\PDO::FETCH_ASSOC);
+        $explode = explode(':', $result['somme']);
+        if($explode[0]>24){
+            $heure = $explode[0]/24;
+            if(is_float($heure)){
+                $reste = $explode[0]%24;
+                return floor($heure).' jours '.$reste.':'.$explode[1].':'.$explode[2];
+            }else{
+                return $heure.':'.$explode[1].':'.$explode[2];
+            }
+        }else{
+            return $result['somme'];
+        }
+    }
+    
+    public function semaine() {
+        
+        $monday = date('d/m/Y', mktime(0, 0, 0, date('m'), date('d')-date('N')+1, date('Y')));
+        $sunday = date('d/m/Y',strtotime('Sunday'));
+        
+        return " semaine du $monday au $sunday ";
+    }
+    
+    public function convertirReel($idUser) {
+        
+        $sql = "SELECT SEC_TO_TIME( SUM( TIME_TO_SEC( `reelTime` ) ) ) AS somme FROM assignation WHERE idUser=".$idUser."";
+        $query    = $this->getDb()->query($sql);
+        $result   = $query->fetch(\PDO::FETCH_ASSOC);
+        $explode = explode(':', $result['somme']);
+        if($explode[0]>24){
+            $heure = $explode[0]/24;
+            if(is_float($heure)){
+                $reste = $explode[0]%24;
+                return floor($heure).' jours '.$reste.':'.$explode[1].':'.$explode[2];
+            }else{
+                return $heure.':'.$explode[1].':'.$explode[2];
+            }
+        }else{
+            return $result['somme'];
+        }
     }
     
     public function UserHaveTache() {
