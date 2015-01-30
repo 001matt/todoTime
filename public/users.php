@@ -34,11 +34,11 @@ include 'header.php'?>
                     <tr>
                         <td><?= $tache->getTitre(); ?></td>
                         <td><?= $tache->getDescription(); ?></td>
-                        <td><?= $tache->getEcheance(); ?></td>
+                        <td><?php echo date("d-m-Y", strtotime($tache->getEcheance())); ?></td>
                         <td><?= $tache->getTimerealisation(); ?></td>
                         <td>
                             <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">
-                                Démmarez
+                                Démarrer
                             </button>
                         </td>
                     </tr>
