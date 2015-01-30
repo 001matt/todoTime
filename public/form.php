@@ -49,7 +49,7 @@ include 'header.php'?>
                  <?php if (!empty($id)): ?>
                 <div class="form-group">
                     <label for="selectedUsers">Utilisateur</label>
-                    <select name="selectedUsers" id="selectedUsers" class="form-control" multiple>
+                    <select name="selectedUsers" id="selectedUsers" class="form-control selectedUsers" multiple>
                         <?php if(!empty($usersTache)) { ?>
                             <?php foreach ($taches->getUsers() as $user) : ?>
                             <option value="<?= $user->getId();?>"><?= $user->getName().' '.$user->getFirstname() ;?></option>
@@ -76,7 +76,7 @@ include 'header.php'?>
                             <option value="<?php echo $key; ?>"><?= $value; ?></option>
                         <?php endforeach; ?>
                     </select>
-                    <input type="hidden" name="idTache" value="<?= $id; ?>">
+                    <input type="hidden" name="idTache" value="<?= $id; ?>" class="idTache">
                 </div>
                 <div class="form-group">
                     <?php if (empty($id)) { ?>
