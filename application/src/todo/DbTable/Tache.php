@@ -28,7 +28,7 @@ class Tache {
                     NULL,
                     '". $tache->getTitre() ."',
                     '". $tache->getDescription() . "',
-                    '". $tache->getEcheance() ."',
+                    '". date("Y-m-d H:i:s", strtotime($tache->getEcheance())) ."',
                     '". $tache->getTimeRealisation() ."',
                     ". $tache->getStatut() .")";
         
@@ -181,32 +181,31 @@ class Tache {
                'password' => $t['password'],
                'state' => $t['state'],
                 );
-
-                $sqlTache = "SELECT * FROM tache AS t JOIN assignation AS a ON a.idTache = t.id WHERE idUser = ".$t['idUser']."";
-                $queryTache = $this->getDb()->query($sqlTache);
-                $taches = array();
-                foreach ($queryTache->fetchAll(\PDO::FETCH_ASSOC) as $row) {
-                        $tache = array(
-                   'idTache' => $row['idTache'],
-                   'titre' => $row['titre'],
-                   'description' => $row['description'],
-                   'echeance' => $row['echeance'],
-                   'timeRealisation' => $row['timeRealisation'],
-                   'statut' => $row['statut'],
-                   'reelTime' => $row['reelTime'],
-                   'totalTimePre' => $row['reelTime'],
-                   'totalTimeReel' => $row['reelTime'],
-                    );
-                    array_push($taches, $tache);
+                    $sqlTache = "SELECT * FROM tache AS t JOIN assignation AS a ON a.idTache = t.id WHERE idUser = ".$t['idUser']."";
+                    $queryTache = $this->getDb()->query($sqlTache);
+                    $taches = array();
+                    foreach ($queryTache->fetchAll(\PDO::FETCH_ASSOC) as $row) {
+                            $tache = array(
+                       'idTache' => $row['idTache'],
+                       'titre' => $row['titre'],
+                       'description' => $row['description'],
+                       'echeance' => $row['echeance'],
+                       'timeRealisation' => $row['timeRealisation'],
+                       'statut' => $row['statut'],
+                       'reelTime' => $row['reelTime'],
+                       'totalTimePre' => $row['reelTime'],
+                       'totalTimeReel' => $row['reelTime'],
+                        );
+                        array_push($taches, $tache);
+                    }
+                    /*$date = \DateTime::createFromFormat('H:i:s', $row['timeRealisation']);
+                    $date = date_format($date, 'H:i:s');*/
+                    array_push($user, $taches);
+                    $user['totalTimePre'] = $this->convertirPre();
+                    $user['totalTimeReel'] = $this->convertirReel($t['idUser']);
+                    array_push($users, $user);
                 }
-                /*$date = \DateTime::createFromFormat('H:i:s', $row['timeRealisation']);
-                $date = date_format($date, 'H:i:s');*/
-                array_push($user, $taches);
-                $user['totalTimePre'] = $this->convertirPre();
-                $user['totalTimeReel'] = $this->convertirReel($t['idUser']);
-                array_push($users, $user);
                 
-        }
         return $users;
     }
     
@@ -257,12 +256,6 @@ class Tache {
         }else{
             return $result['somme'];
         }
-    }
-    
-    public function UserHaveTache() {
-                        
-                
-        return true;
     }
     
     protected function getSqlTache()

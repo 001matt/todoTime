@@ -43,7 +43,7 @@ include 'header.php';
                             }else{
                                echo $description = $tache->getDescription();
                             } ?></td>
-                        <td><?= $tache->getEcheance(); ?></td>
+                        <td><?php echo date("d-m-Y", strtotime($tache->getEcheance())); ?></td>
                         <td><?= $tache->getTimerealisation(); ?></td>
                         <td><?= $tache->getStatutToString($tache->getStatut()); ?></td>
                         <td><?php foreach ($tache->getUsers() as $value) {
